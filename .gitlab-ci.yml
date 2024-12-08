@@ -1,0 +1,30 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  # NODE_ENV: 'production'
+  PROJECT_DIR: "C:/Users/azadifar/Desktop/padash-pwa-app/front" #
+
+build:
+  stage: build
+  script:
+    - echo "Pull & Building Next.js app..."
+    - whoami
+    - cd $PROJECT_DIR # Navigate to your Next.js app directory
+    - ls
+    - git pull origin main
+    - npm install 
+    - npm run build # Build the Next.js app
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying Next.js app..."
+    - cd $PROJECT_DIR # Navigate to the app directory again
+    - ls
+    - cd .next
+    - ls
+    - cd ..
+    - npm run start # Run the Next.js app (in production mode)
+    - ls
