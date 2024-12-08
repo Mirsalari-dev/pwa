@@ -6,6 +6,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NProgressProvider from "@/components/providers/NProgress/NProgress";
 
 export const metadata: Metadata = {
   title: "پاداش",
@@ -55,27 +56,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="fa" dir="rtl">
-        <body className={IRANYekanWeb.className}>
-          <ReactQueryProvider>
-            <AppRouterCacheProvider>
-              <MuiWrapper>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={5000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={true}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                />
-                {children}
-              </MuiWrapper>
-            </AppRouterCacheProvider>
-          </ReactQueryProvider>
-        </body>
-      </html>
+    <html lang="fa" dir="rtl">
+      <body className={IRANYekanWeb.className}>
+        <ReactQueryProvider>
+          <AppRouterCacheProvider>
+            <MuiWrapper>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={true}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              <NProgressProvider>{children}</NProgressProvider>
+            </MuiWrapper>
+          </AppRouterCacheProvider>
+        </ReactQueryProvider>
+      </body>
+    </html>
   );
 }
